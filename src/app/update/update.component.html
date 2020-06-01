@@ -1,0 +1,39 @@
+<div class="conatiner">
+<div class="alert alert-warning" *ngIf="form.invalid" > Enter Valid fields </div>
+   <form   (ngSubmit)="!form.invalid && onUpdate()" #form=ngForm>
+
+        <fieldset class="form-group"><label for="Username">Firstname</label>
+            <input type="text" class="form-control "
+            [(ngModel)]="Details.firstName"
+           #firstname=ngModel
+            [ngModelOptions]="{standalone: true}"
+             style="width : '500px'" 
+             required="required"
+             ></fieldset>
+        
+        <fieldset class="form-group">
+            <label for="Username" >Lastname</label>
+            <input type="text" class="form-control "
+            [(ngModel)]="Details.lastName"
+            #lastname=ngModel
+            [ngModelOptions]="{standalone: true}"
+             style="width : '500px'" 
+             required="required">
+            </fieldset>
+        
+            <fieldset class="form-group"><label for="Username" >Email</label>
+                <input type="text" class="form-control "
+                [(ngModel)]="Details.email"
+                #email=ngModel
+                [ngModelOptions]="{standalone: true}"
+                 style="width : '500px'" 
+                 required="required"
+                 ></fieldset>
+         
+                
+          <button class="btn btn-primary"> Save </button>
+
+        
+        </form>
+    
+</div>

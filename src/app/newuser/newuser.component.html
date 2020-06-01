@@ -1,0 +1,69 @@
+<div class="alert alert-success"
+*ngIf="flag">
+    Sign up Successful
+</div>
+
+<div class="conatiner" style="margin-top: 5%;">
+    <div class="alert alert-warning" *ngIf="form.invalid" > Enter Valid fields </div>
+    <form  (ngSubmit)="!form.invalid && onUpdate()" #form=ngForm>
+        <div class="row">
+            <div class="col-sm-4"> </div>
+        <div class="col-md-4">
+          
+        <h1 class="text-center text-success"> Register page</h1>
+        <br/>
+        
+        <div class="col-sm-12">
+        
+          
+
+            <fieldset class="form-group"><label for="Username">username</label>
+                <input type="text" class="form-control "
+                [(ngModel)]="login.username"
+                [ngModelOptions]="{standalone: true}"
+                 style="width : '500px'" 
+                 required="required"
+                 ></fieldset>
+            
+            <fieldset class="form-group">
+                <label for="password" >password</label>
+                <input type="password" class="form-control "
+                [(ngModel)]="login.password"
+                [ngModelOptions]="{standalone: true}"
+                 style="width : '500px'" 
+                 required="required">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="Email" >Email</label>
+                    <input type="email" class="form-control "
+                    [(ngModel)]="login.email"
+                    [ngModelOptions]="{standalone: true}"
+                     style="width : '500px'" 
+                     required="required">
+                    </fieldset>
+            
+                <fieldset class="form-group"><label for="role" >Role</label>
+                    
+                            <select class="form-control" [(ngModel)]="login.role" [ngModelOptions]="{standalone: true}"
+                            style="width : '200px'" 
+                            required="required"
+                            >
+                                <option value="Manager">Manager
+                                <option value="User">User
+                                <option value="Employee">Employee
+                            </select>
+             
+                </fieldset>
+
+              <button class="btn btn-primary" > Save </button>
+            </div>
+        </div>
+
+    
+</div>
+           
+        
+
+
+    

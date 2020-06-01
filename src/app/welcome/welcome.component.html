@@ -1,0 +1,60 @@
+<div class="container container--component margin">
+
+
+
+    <h1> Welcome {{ Username }} !</h1>
+
+
+
+    <br>
+    <div class="alert alert-success" *ngIf='message' role="alert" data-auto-dismiss="2000">
+        <span><strong>Atention!</strong> {{message}} </span>
+    </div>
+    <div class="alert alert-danger" *ngIf='error'>
+
+        <span><strong>Atention!</strong> {{ response }} </span>
+    </div>
+    <br>
+    <div class="container">
+        <h5>Press to get server welcome data</h5>
+        <button class="btn btn-success" (click)="Message()"> Message from server </button>
+    </div>
+    <hr>
+    <div class="container" *ngIf='called'>
+        {{ response }}
+
+    </div>
+    <br>
+    <div class="container">
+
+        <div class="table table-striped col-xs-12">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>LastName</th>
+                    <th>E-Mail</th>
+                    <th>Update/Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let detail of Details">
+                    <td>{{ detail.firstName }}</td>
+                    <td>{{ detail.lastName }}</td>
+                    <td>{{ detail.email }}</td>
+                    <td>
+                        <ul>
+                            <button class="btn btn-success" (click)="onUpdate(detail.id)">Update</button>
+
+                            <button class="btn btn-danger" (click)="onDelete(detail.id)">Delete</button>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+            <button class="btn btn-primary" (click)="onAdd()"> Add Producer </button>
+        </div>
+    </div>
+
+
+
+
+</div>

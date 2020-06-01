@@ -1,0 +1,6 @@
+body{
+    background-image: url(http://www.joburgchiropractor.co.za/images/background.jpg);
+  }
+  .ng-invalid{
+    border-left: 5px solid red;
+}

@@ -1,0 +1,17 @@
+<header>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div><a *ngIf="!this.hardcod.isUserLoggedIn(); else elseblock" routerLink="/login" class="navbar-brand">Producer Details</a></div>
+    <ng-template #elseblock><a routerLink="welcome/Deepak"></a></ng-template>   
+    <ul class="navbar-nav">
+            <li><a *ngIf="this.hardcod.isUserLoggedIn()" [href]= "['/welcome/', user]" 
+                 class="nav-link">Home</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-collapse justify-content-end">
+        <li><a *ngIf="!this.hardcod.isUserLoggedIn()" routerLink="/login" class="nav-link">login</a></li>
+
+            <li><a *ngIf="this.hardcod.isUserLoggedIn()" routerLink="/logout" class="nav-link">logout</a></li>
+            </ul>
+            </nav>
+
+</header>
