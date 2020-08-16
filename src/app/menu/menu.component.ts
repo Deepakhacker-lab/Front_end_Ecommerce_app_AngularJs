@@ -3,6 +3,8 @@ import { HardcodedauthService } from '../service/hardcodedauth.service';
 import { Router } from '@angular/router';
 
 import { PDetails } from '../welcome/welcome.component';
+import { BasicauthService } from '../service/basicauth.service';
+
 
 @Component({
   selector: 'app-menu',
@@ -12,13 +14,25 @@ import { PDetails } from '../welcome/welcome.component';
 export class MenuComponent implements OnInit {
 isLoggedin: boolean =false;
 pdetails: PDetails[];
+
+
+
   constructor(private route:Router,
-    public hardcod: HardcodedauthService) { }
+    public hardcod: HardcodedauthService,private basicauth: BasicauthService) { }
 user: string='';
   ngOnInit(): void {
     this.user=this.hardcod.getUser();
-  
+     
   }
+
+  isdisabled(){
+    let role =this.basicauth.getAuthenticateRoles()
+    if(role==='ADMIN'){
+     
+      
+      return true;
+    }
+    };
  
   onPress(){
     

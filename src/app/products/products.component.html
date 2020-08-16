@@ -1,0 +1,26 @@
+
+<div class="col-md-9">
+  <div class="alert alert-success" role="alert" *ngIf="postedEvent=='success'" >
+    {{ message }}
+  </div>
+
+  <div class="alert alert-danger" role="alert" *ngIf="postedEvent=='error'" >
+    {{ message }}
+  </div>
+
+    <app-productdetails (cartSelected)="productadded = $event"></app-productdetails>
+</div>
+
+
+ <div class="col-md-3"  >     
+    <app-cartlist (PostEvent)="postedEvent = $event"
+    (PostMessage)="message = $event"
+    *ngIf="productadded[0]!=null; else info"
+    [prod]="productadded">
+  
+    </app-cartlist>
+    <ng-template #info>
+        <p>Added Cart items</p>
+    </ng-template>
+</div> 
+    

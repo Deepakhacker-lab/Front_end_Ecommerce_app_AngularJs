@@ -16,11 +16,24 @@ import {  HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { UpdateComponent } from './update/update.component';
 import { HttpinterceptorbasicauthService } from './service/httpinterceptorbasicauth.service';
 
+
+
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 import { MomentModule } from 'angular2-moment';
 import { TimeoutComponent } from './timeout/timeout.component';
 import { NewuserComponent } from './newuser/newuser.component';
 import { EmailComponent } from './email/email.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductuploadComponent } from './productupload/productupload.component';
+
+import { Ng2ImgMaxModule } from 'ng2-img-max';
+import { CartComponent } from './Cart/cart.component';
+import { ProductdetailsComponent } from './products/productdetails/productdetails.component';
+import { CartlistComponent } from './products/cartlist/cartlist.component';
+
+
+
+
 
 
 
@@ -38,7 +51,12 @@ import { EmailComponent } from './email/email.component';
     UpdateComponent,
     TimeoutComponent,
     NewuserComponent,
-    EmailComponent
+    EmailComponent,
+    ProductsComponent,
+    ProductuploadComponent,
+    CartComponent,
+    ProductdetailsComponent,
+    CartlistComponent
     
   ],
   imports: [
@@ -47,7 +65,9 @@ import { EmailComponent } from './email/email.component';
     FormsModule,
     HttpClientModule,
     NgIdleKeepaliveModule.forRoot(),
-    MomentModule
+    MomentModule,
+    Ng2ImgMaxModule,
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorbasicauthService, multi:true},

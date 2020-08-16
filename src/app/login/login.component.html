@@ -9,7 +9,7 @@
         Login Successful
     </div>
     <ng-template #elseblock><div class="alert alert-warning" >
-        <em> !</em> Username or Password is Wrong 
+        Username or Password is Wrong 
     </div>
 </ng-template>
 </div >
@@ -54,6 +54,9 @@
     <div class="form-group">
         <input type="submit" [disabled]="Username==='' || Password===''" (click)="Authjwt()"
          value="Login" class="btn float-right login_btn">
+         <div *ngIf="isLoading"> Loading
+
+         </div>
     </div>
 
     
@@ -62,6 +65,7 @@
 <div class="card-footer">
     <div class="d-flex justify-content-center links">
         Don't have an account?<a href= "/newuser">Sign Up</a>
+
     </div>
     <div class="d-flex justify-content-center">
         <a href="#">Forgot your password?</a>

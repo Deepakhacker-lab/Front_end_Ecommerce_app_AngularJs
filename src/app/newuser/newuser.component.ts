@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SignupService } from '../service/signup.service';
+import { logindetails } from './NewUserInterface';
 
 @Component({
   selector: 'app-newuser',
@@ -9,34 +10,29 @@ import { SignupService } from '../service/signup.service';
 })
 export class NewuserComponent implements OnInit {
 
-  login :logindetails;
   flag: boolean;
+  failedFlag: boolean;
+  valid: boolean;
   id : number=-1;
+  message: string;
   constructor(private router: Router,
     private update: SignupService ) { }
 
   ngOnInit(): void {
-    this.flag= false;
-    this.login= (new logindetails(this.id,'', '', '',''));
-
+    this.failedFlag=true;
+  this.valid=true;
   }
 
-  onUpdate(){
-    this.update.CreateProducer(this.id, this.login).subscribe(
+  onUpdate(post : logindetails){
+    this.update.CreateProducer(this.id, post).subscribe(
       Response=>{this.router.navigate(['email', {res: Response}]),
       this.flag=true;
       console.log(Response);
+    },
+    error=>{
+      this.failedFlag=true;
+      this.message="Failed";
     }
      )
   }
-
-
 }
-export class logindetails{
-
-  constructor(public id:number ,
-    public username:string,
-     public password:string,
-     public role:String,
-     public email:String){}
-  }

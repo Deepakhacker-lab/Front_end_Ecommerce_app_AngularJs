@@ -1,0 +1,91 @@
+
+<div class="container row">
+    <div class="col-md-12">
+        <h1>Upload Image</h1>
+    </div>
+    <div class="container" justify-content-md-right>
+        <div  *ngIf="hit">
+        <div class="alert alert-success" *ngIf="isEnabled; else elseblock">
+            {{ message.response }}
+        </div>
+        <ng-template #elseblock><div class="alert alert-warning" >
+            {{ message.response }} 
+        </div>
+    </ng-template>
+    </div >
+
+    </div>
+   
+    <div *ngIf="Upload">Uploading {{ percentage }} </div>
+    <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <form #postForm="ngForm" (ngSubmit)="onUpload(postForm.value)">
+                <div class="form-group">
+                    <label for="photo">Photo</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="file"
+                      required
+                      (change)="onFileChanged($event)"
+                    />
+                  </div>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                  ngModel
+                  name="name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="unique">Scrip Code</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="unique"
+                  required
+                  ngModel
+                  name="unique"
+                />
+              </div>
+              <div class="form-group">
+                <label for="price">price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  required
+                  ngModel
+                  name="price"
+                />
+              </div>
+              <div class="form-group">
+                <label for="availableQuantity">availableQuantity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="availableQuantity"
+                  required
+                  ngModel
+                  name="availableQuantity"
+                />
+              </div>
+              <button
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="!postForm.valid"
+              >
+                Send Post
+              </button>
+            </form>
+          </div>
+        </div>
+    
+</div>
+
+

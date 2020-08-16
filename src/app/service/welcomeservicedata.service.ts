@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ActivatedRoute } from '@angular/router';
 import { API_URL } from '../app.constant';
-import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +12,18 @@ export class WelcomeservicedataService {
   
   constructor(private route:ActivatedRoute ,private http:HttpClient) { }
 
-  servicehellodata(){
-    return this.http.get("http://localhost:8080/hello-world/");
-  }
-
+  
   ServiceHelloDatawithpath(name){
 
-    let authenticate=this.basicauthservice();
-
-    let header = new HttpHeaders({
-      Authorization: authenticate
-    })
    return this.http.get(`${API_URL}/hello-world/${name}`);
-  // , {headers: header};
+  }
+
+  ServiceSwagger(){
+    return this.http.get(`${API_URL}/swagger-ui.html`);
+  }
+
+  servicehellodata(){
+    return this.http.get("http://localhost:8080/hello-world/");
   }
  
   //http://localhost:8080/hello-world/deepak

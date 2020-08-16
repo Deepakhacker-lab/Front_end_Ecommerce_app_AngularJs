@@ -7,17 +7,18 @@
 
 
     <br>
-    <div class="alert alert-success" *ngIf='message' role="alert" data-auto-dismiss="2000">
-        <span><strong>Atention!</strong> {{message}} </span>
+    <div class="alert alert-success" *ngIf='called' role="alert" data-auto-dismiss="2000">
+        <span><strong>Atention!</strong> {{ message }} </span>
     </div>
     <div class="alert alert-danger" *ngIf='error'>
 
-        <span><strong>Atention!</strong> {{ response }} </span>
+        <span><strong>Atention!</strong> {{ message }} </span>
     </div>
     <br>
     <div class="container">
         <h5>Press to get server welcome data</h5>
         <button class="btn btn-success" (click)="Message()"> Message from server </button>
+        
     </div>
     <hr>
     <div class="container" *ngIf='called'>

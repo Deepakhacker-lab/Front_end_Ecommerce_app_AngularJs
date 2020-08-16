@@ -1,0 +1,39 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="container-row">
+    <div class="col-xl">
+        <div *ngIf=sucess>
+            <div class="row ">
+                <div class="col-md-4"  *ngFor="let product of retrieveResonse">
+                    <div class="card" style="width: 75%; margin: 10%;">
+                    
+                        <img src="data:image/png;base64,{{product.picByte}}"
+                        class="card-img-top"/>
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger btn-number"  data-type="minus" min="0" data-field="quant[2]" (click)="minus(product)">
+                                  <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </span>
+                             <input type="number" name="quant[2]" 
+                             class="form-control input-number" [(ngModel)]="product.bookingQuantity"  min="0" max="product.availableQuantity">
+                             
+                            
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]" (click)="add(product)">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                        </div>  
+                        <button  class="btn btn-primary"  (click)="AddCart(product)">Add to Cart</button>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+    </div>

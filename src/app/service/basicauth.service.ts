@@ -4,13 +4,17 @@ import { map } from "rxjs/operators";
 import { API_URL } from '../app.constant';
 import { PDetails } from '../welcome/welcome.component';
 
+
+
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class BasicauthService {
   redirectUrl: string;
   constructor(private http: HttpClient) { }
-
+ 
 
   isUserLoggedIn(){
     let user= sessionStorage.getItem('authenticaterUser');
@@ -48,7 +52,7 @@ export class BasicauthService {
     {headers: header}).pipe(
       map(
         data=> {
-          console.log(data)
+         
           sessionStorage.setItem('authenticaterUser', Username);
           sessionStorage.setItem('Token', auth);
           return data;
@@ -66,7 +70,12 @@ export class BasicauthService {
     return sessionStorage.getItem('Token');
   }
 
- 
+  getAuthenticateRoles(){
+    if(this.getAuthenticateUser()){
+   
+      return sessionStorage.getItem('Role');
+    }
+  }
 
   //http://localhost:8080/hello-world/deepak
 
@@ -80,10 +89,13 @@ export class BasicauthService {
     }).pipe(
       map(
         data=> {
-          console.log(data);
-          console.log(data.token)
+        
+          var texts = data.role.map(function(el) {
+            return el.authority;
+          });
           sessionStorage.setItem('authenticaterUser', username);
           sessionStorage.setItem('Token', `Bearer ${data.token}`);
+          sessionStorage.setItem('Role',texts);
           return data;
         }
       )

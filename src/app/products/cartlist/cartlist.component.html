@@ -1,0 +1,26 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="row">
+    <div class="col-xl-12">
+      
+      <ul class="list-group" *ngFor="let prodel of prod">
+        <a
+          class="list-group-item"
+          style="cursor: pointer"
+          *ngIf="prodel.bookingQuantity!=0;">
+          
+          {{ prodel.name }} ({{ prodel.bookingQuantity }}) 
+           <button type="button" class="close" 
+            data-type="minus" data-field="quant[2]" (click)="minus(prodel)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
+        </a>
+      
+      </ul>       
+          <button type="button" class="btn btn-primary" (click)="Navigate(prod)"> Check Out</button>
+      
+    </div>
+  </div>
+ 

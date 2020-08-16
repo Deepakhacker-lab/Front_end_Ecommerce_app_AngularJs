@@ -28,9 +28,9 @@ Details : PDetails[];
 //   new PDetails('vignesh','war','war@hotmail.com'),
 //   new PDetails('Sai','Manoj','Manoj@hotmail.com'),
 // ];
-  called: boolean;
+  called: boolean=false;
   response: String;
-  error: boolean;
+  error: boolean=false;
   
   //activate route
   constructor(private route: ActivatedRoute,
@@ -69,27 +69,31 @@ RefreshProducerlist(){
 
   Message(){
   this.serverMessage.ServiceHelloDatawithpath(this.Username).subscribe(
-  Response=> {this.handlesuccessServer(Response)
+  data=> {
+    this.message= JSON.parse(JSON.stringify(data)).response;
+    this.called=true;
   },
-  error=>{this.HandleErrorMessage(error)
+  error=>{
+  this.message="Only Admin can access";
+  this.error=true;
   }
   );
  
   }
-
-  
-
-  HandleErrorMessage(error) {
+  swagger(){
+    this.serverMessage.ServiceSwagger().subscribe(
+    data=> {
+      this.message= JSON.parse(JSON.stringify(data)).response;
+      this.called=true;
+    },
+    error=>{
+    this.message="Only Admin can access";
     this.error=true;
-    console.log("Error console"+error);
-    this.response=error.error.message;
-  }
+    }
+    );
+   
+    }
 
-  handlesuccessServer(Response){
-  console.log("Success handler"+Response);
-  this.response=JSON.parse(Response.message);
-  this.called=true;
-  }
 
   onDelete(id: number){
     this.deletedate.DeleteDataService(id).subscribe(

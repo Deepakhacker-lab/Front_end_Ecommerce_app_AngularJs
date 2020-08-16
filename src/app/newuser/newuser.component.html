@@ -1,11 +1,16 @@
 <div class="alert alert-success"
-*ngIf="flag">
+*ngIf="flag ; else failed">
     Sign up Successful
 </div>
+<ng-template #failed>
+  <div class="alert alert-warning" >
+    {{message}}
+</div>
+</ng-template>
 
 <div class="conatiner" style="margin-top: 5%;">
-    <div class="alert alert-warning" *ngIf="form.invalid" > Enter Valid fields </div>
-    <form  (ngSubmit)="!form.invalid && onUpdate()" #form=ngForm>
+    <div class="alert alert-warning" *ngIf="form.invalid" || valid > Enter Valid fields </div>
+    <form #form=ngForm (ngSubmit)="onUpdate(form.value)" >
         <div class="row">
             <div class="col-sm-4"> </div>
         <div class="col-md-4">
@@ -14,13 +19,10 @@
         <br/>
         
         <div class="col-sm-12">
-        
-          
-
             <fieldset class="form-group"><label for="Username">username</label>
                 <input type="text" class="form-control "
-                [(ngModel)]="login.username"
-                [ngModelOptions]="{standalone: true}"
+                ngModel
+                  name="username"
                  style="width : '500px'" 
                  required="required"
                  ></fieldset>
@@ -28,8 +30,8 @@
             <fieldset class="form-group">
                 <label for="password" >password</label>
                 <input type="password" class="form-control "
-                [(ngModel)]="login.password"
-                [ngModelOptions]="{standalone: true}"
+                ngModel
+                  name="password"
                  style="width : '500px'" 
                  required="required">
                 </fieldset>
@@ -37,26 +39,33 @@
                 <fieldset class="form-group">
                     <label for="Email" >Email</label>
                     <input type="email" class="form-control "
-                    [(ngModel)]="login.email"
-                    [ngModelOptions]="{standalone: true}"
+                    ngModel
+                  name="email"
                      style="width : '500px'" 
                      required="required">
                     </fieldset>
             
                 <fieldset class="form-group"><label for="role" >Role</label>
                     
-                            <select class="form-control" [(ngModel)]="login.role" [ngModelOptions]="{standalone: true}"
+                            <select class="form-control" ngModel
+                            name="role"
                             style="width : '200px'" 
                             required="required"
                             >
-                                <option value="Manager">Manager
-                                <option value="User">User
-                                <option value="Employee">Employee
+                                <option value="ADMIN">Admin
+                                <option value="USER">User
+                                
                             </select>
              
                 </fieldset>
 
-              <button class="btn btn-primary" > Save </button>
+                <button
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="!form.valid"
+              >
+                Sign Up
+              </button>
             </div>
         </div>
 

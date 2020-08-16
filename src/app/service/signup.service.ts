@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { logindetails } from '../newuser/newuser.component';
+
 import { API_URL } from '../app.constant';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class SignupService {
   constructor(private http:HttpClient) { }
 
   verification(code, url){
-     let data = {'code': code};
+     let data = {'token': code};
      const headers = new HttpHeaders ({'Content-Type': 'application/json'});
   return this.http.post(url,JSON.stringify(data), {headers: headers});
   }

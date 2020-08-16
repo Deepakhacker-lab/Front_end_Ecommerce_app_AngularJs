@@ -11,7 +11,7 @@ export class EmailComponent implements OnInit {
 
   url='';
   private sub: any;
-  code :Number=0;
+  code :Number;
   failed: boolean= false;
   constructor(private route: ActivatedRoute,
     private update: SignupService,
